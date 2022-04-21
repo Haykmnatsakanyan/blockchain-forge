@@ -1,0 +1,114 @@
+{
+  "_format": "ethers-rs-sol-cache-3",
+  "paths": {
+    "artifacts": "out",
+    "sources": "src",
+    "tests": "test",
+    "libraries": [
+      "lib"
+    ]
+  },
+  "files": {
+    "/Users/hkmnatsakanyan1/workspace/blockchain/forge/lib/ds-test/src/test.sol": {
+      "lastModificationDate": 1650553871904,
+      "contentHash": "82a8604fe648c30a9bd56444368704f0",
+      "sourceName": "lib/ds-test/src/test.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs"
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ]
+            }
+          },
+          "evmVersion": "london"
+        }
+      },
+      "imports": [],
+      "versionRequirement": ">=0.5.0",
+      "artifacts": {}
+    },
+    "/Users/hkmnatsakanyan1/workspace/blockchain/forge/src/FootballLeagueTokens.sol": {
+      "lastModificationDate": 1650554024713,
+      "contentHash": "4f3e538438fef76a1511cd7674b6d6d8",
+      "sourceName": "src/FootballLeagueTokens.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs"
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ]
+            }
+          },
+          "evmVersion": "london"
+        }
+      },
+      "imports": [],
+      "versionRequirement": "^0.8.10",
+      "artifacts": {}
+    },
+    "/Users/hkmnatsakanyan1/workspace/blockchain/forge/test/Contract.t.sol": {
+      "lastModificationDate": 1650553870253,
+      "contentHash": "3d0825009c70aeaebba898360d09b12b",
+      "sourceName": "test/Contract.t.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs"
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ]
+            }
+          },
+          "evmVersion": "london"
+        }
+      },
+      "imports": [
+        "lib/ds-test/src/test.sol"
+      ],
+      "versionRequirement": "^0.8.13",
+      "artifacts": {}
+    }
+  }
+}
