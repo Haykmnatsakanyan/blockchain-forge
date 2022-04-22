@@ -3,10 +3,31 @@
 # (-include to ignore error if it does not exist)
 -include .env
 
+#Deployment
+local :; forge create --rpc-url http://127.0.0.1:7545 \
+   						--constructor-args "" \
+   					  --private-key 506a01d72bd140ba821edc2111bbb4c60f304da6a53abb3fcb66ec682d258a45 \
+					  --legacy \
+       				 src/Simple.sol:Simple 
+
+rinkeby :; forge create --rpc-url $(ALCHEMY) \
+   						--constructor-args "" \
+   					    --private-key ${ACCOUNT_PRIVATE_KEY} \
+       				    src/Simple.sol:Simple
+
+verify_rinkeby :; forge verify-contract \
+				--compiler-version "v0.8.13+commit.abaa5c0e" \
+				 0x385665eDD577A571145871498A34477290297a40 \
+				  src/FootballLeagueTokens.sol:FootballLeagueTokens \
+				 ${ETHERSCAN_API_KEY} \
+				 --chain-id 4 
+
+verify_check :; forge verify-check --chain-id 4 \
+                 'g59u2brnesu24izuktmwqyekbbdta5pmgbjhcriwipsubm6ceu' \
+                 ${ETHERSCAN_API_KEY}
+
 # Build & test
 trace   :; forge test -vvv
-
-#SECOND EXAMPLE
 
 all: clean remove install update solc build dappbuild
 
@@ -17,10 +38,15 @@ solc:; nix-env -f https://github.com/dapphub/dapptools/archive/master.tar.gz -iA
 clean  :; forge clean
 
 # Remove modules
-remove :; rm -rf .gitmodules && rm -rf .git/modules/* && rm -rf lib && touch .gitmodules && git add . && git commit -m "modules"
+remove :; rm -rf .gitmodules && rm -rf .git/modules/* && rm -rf lib && touch .gitmodules && git add . && git commit -m "Removed modules"
 
 # Install the Modules
-install :; forge install dapphub/ds-test && forge install rari-capital/solmate && forge install brockelmore/forge-std && forge install ZeframLou/clones-with-immutable-args && forge install smartcontractkit/chainlink-brownie-contracts
+install :;  forge install dapphub/ds-test && \
+			forge install OpenZeppelin/openzeppelin-contracts 
+			# && forge install rari-capital/solmate && 
+		    # forge install brockelmore/forge-std &&
+		    # forge install ZeframLou/clones-with-immutable-args && 
+			# forge install smartcontractkit/chainlink-brownie-contracts
 
 # Update Dependencies
 update:; forge update
