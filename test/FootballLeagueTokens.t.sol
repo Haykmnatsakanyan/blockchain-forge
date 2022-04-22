@@ -9,11 +9,11 @@ contract FootballLeagueTokensTest is DSTest {
     FootballLeagueTokens public footballLeagueTokens;
 
     function setUp() public {
-        footballLeagueTokens = new FootballLeagueTokens();
+        footballLeagueTokens = new FootballLeagueTokens("");
     }
 
     function testMitnByEth() public {
-        footballLeagueTokens.mintByETH(0, 0);
-        assertTrue(1);
+        footballLeagueTokens.mintByETH(0, 10);
+
     }
 }
