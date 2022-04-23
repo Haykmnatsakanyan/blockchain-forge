@@ -6,28 +6,21 @@
 #Deployment
 local :; forge create --rpc-url http://127.0.0.1:7545 \
    						--constructor-args "" \
-   					  --private-key 506a01d72bd140ba821edc2111bbb4c60f304da6a53abb3fcb66ec682d258a45 \
-					  --legacy \
-       				 src/Simple.sol:Simple 
+   					 	--private-key 506a01d72bd140ba821edc2111bbb4c60f304da6a53abb3fcb66ec682d258a45 \
+					 	--legacy $(contract)
 
-rinkeby_without_constructor :; forge create --rpc-url $(ALCHEMY) --private-key ${ACCOUNT_PRIVATE_KEY} src/Simple.sol:Simple
+rinkeby_migrate :; forge create --rpc-url $(ALCHEMY) \
+   						--constructor-args $(args) \
+   					    --private-key ${ACCOUNT_PRIVATE_KEY} $(contract) 
 
-rinkeby :; forge create --rpc-url $(ALCHEMY) \
-   						--constructor-args "" \
-   					    --private-key ${ACCOUNT_PRIVATE_KEY} \
-       				    src/Simple.sol:Simple 
+rinkeby_migrate_without_constructor :; forge create --rpc-url $(ALCHEMY) \
+   					    --private-key ${ACCOUNT_PRIVATE_KEY} $(contract) 
 
-
-verify_rinkeby :; forge verify-contract \
+rinkeby_verify :; forge verify-contract \
 				--compiler-version "v0.8.13+commit.abaa5c0e" \
-				 0x69254e50a7fc59a00dc47060c831d997386cb619 \
-				  src/Simple.sol:Simple  \
-				 ${ETHERSCAN_API_KEY} \
-				 --chain-id 4 
+				 $(address) $(contract) ${ETHERSCAN_API_KEY} --chain-id 4 
 
-verify_check :; forge verify-check --chain-id 4 \
-                 'txmnhnav5fetexrfia7txs24zl85mafhqgvpftdm1hbmthirir' \
-                 ${ETHERSCAN_API_KEY}
+rinkeby_verify_check :; forge verify-check --chain-id 4 $(guid) ${ETHERSCAN_API_KEY}
 
 # Build & test
 trace   :; forge test -vvv
