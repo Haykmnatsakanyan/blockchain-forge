@@ -34,7 +34,7 @@ all: clean remove install update solc build dappbuild
 clean  :; forge clean
 
 # Remove modules
-remove :; rm -rf .gitmodules && rm -rf .git/modules/* && rm -rf lib && touch .gitmodules && git add . && git commit -m "Removed modules"
+remove :; rm -rf .gitmodules && rm -rf .git/modules/* && rm -rf lib && touch .gitmodules
 
 # Install the Modules
 install :;  forge install dapphub/ds-test && \
