@@ -10,20 +10,23 @@ local :; forge create --rpc-url http://127.0.0.1:7545 \
 					  --legacy \
        				 src/Simple.sol:Simple 
 
+rinkeby_without_constructor :; forge create --rpc-url $(ALCHEMY) --private-key ${ACCOUNT_PRIVATE_KEY} src/Simple.sol:Simple
+
 rinkeby :; forge create --rpc-url $(ALCHEMY) \
    						--constructor-args "" \
    					    --private-key ${ACCOUNT_PRIVATE_KEY} \
-       				    src/Simple.sol:Simple
+       				    src/Simple.sol:Simple 
+
 
 verify_rinkeby :; forge verify-contract \
 				--compiler-version "v0.8.13+commit.abaa5c0e" \
-				 0x385665eDD577A571145871498A34477290297a40 \
-				  src/FootballLeagueTokens.sol:FootballLeagueTokens \
+				 0x69254e50a7fc59a00dc47060c831d997386cb619 \
+				  src/Simple.sol:Simple  \
 				 ${ETHERSCAN_API_KEY} \
 				 --chain-id 4 
 
 verify_check :; forge verify-check --chain-id 4 \
-                 'g59u2brnesu24izuktmwqyekbbdta5pmgbjhcriwipsubm6ceu' \
+                 'txmnhnav5fetexrfia7txs24zl85mafhqgvpftdm1hbmthirir' \
                  ${ETHERSCAN_API_KEY}
 
 # Build & test
